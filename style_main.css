@@ -1,0 +1,174 @@
+* {
+  font-family: "Courier New", Courier, monospace;
+}
+
+body {
+  text-align: center;
+  background: white;
+}
+
+#wrapper {
+  width: 95%;
+  margin: 20px auto;
+  text-align: left;
+  border: 1px solid grey;
+  padding: 20px;
+  background: pink;
+}
+#index_menu li a {
+  line-height: 2.5;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+#pcc_title {
+  width: 100%;
+}
+
+#id_cc input,
+#id_cc select {
+  width: 100%;
+}
+
+#select_programtype {
+  height: 35px;
+  flex-shrink: 1;
+  width: 100%;
+}
+
+.adm button,
+.adm input {
+  float: right;
+  height: 30px;
+  width: 150px;
+  font-weight: bold;
+  background-color: green;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
+.error {
+  color: red;
+}
+
+#welcome {
+  clear: both;
+  text-align: right;
+}
+
+h3 span {
+  text-decoration: underline;
+  color: green;
+}
+
+#user_reg_form1,
+#user_reg_form2,
+#user_reg_form3 {
+  width: 100%;
+  height: 45px;
+  box-sizing: border-box;
+  padding-left: 15px;
+}
+
+#user_reg_form_sub {
+  width: 150px;
+  height: 30px;
+}
+
+#cps_campus,
+#cps_campus_zone,
+#cps_pategory {
+  width: 100%;
+}
+
+table {
+  border-spacing: 0px;
+  table-layout: fixed;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  border: 1px solid rgb(58, 65, 209);
+  word-break: break-word;
+  padding: 10px 5px;
+}
+
+thead {
+  background-color: rgb(94, 182, 112);
+  color: white;
+  white-space: nowrap;
+  font-size: 20px;
+}
+
+thead th {
+  padding: 20px 0;
+}
+
+tbody tr > td {
+  margin-left: 10px;
+}
+
+table tbody tr:nth-child(2n) {
+  background-color: rgb(94, 182, 112);
+}
+
+table tbody tr:nth-child(n):hover {
+  background-color: rgb(58, 65, 209);
+}
+
+#id_cc select,
+input {
+  width: 100%;
+  height: 45px;
+  box-sizing: border-box;
+  padding-left: 15px;
+}
+
+#id_cc select option {
+  width: 100%;
+  height: 45px;
+  box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(0.5); /* IE */
+  -moz-transform: scale(0.5); /* FF */
+  -webkit-transform: scale(0.5); /* Safari and Chrome */
+  -o-transform: scale(0.5); /* Opera */
+  transform: scale(0.5);
+  padding: 10px;
+}
+
+table thead {
+  text-align: center;
+}
+
+#btn_delete input {
+  position: fixed;
+  font-weight: bold;
+  height: 30px;
+  width: 150px;
+  height: 35px;
+  right: 45px;
+  top: 150px;
+  background-color: red;
+  z-index: 1;
+}
+
+#hidden_input {
+  display: none;
+}
+
+.rrc_header_h1 {
+  text-align: center;
+  clear: both;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 200px;
+}

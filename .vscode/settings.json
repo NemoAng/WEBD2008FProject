@@ -1,0 +1,7 @@
+{
+    "editor.fontSize": 12,
+    "editor.inlineHints.fontFamily": "'Courier New', monospace,Consolas",
+    "terminal.integrated.fontSize": 12,
+    "terminal.integrated.fontFamily": "'Courier New'",
+    "screencastMode.fontSize": 46
+}
