@@ -1,5 +1,5 @@
 <?php if ($user_logined) : ?>
-    <h3 id="welcome">Welcome <span><?= $_SESSION['username'] ?></span> !</h3>
+    <h3 id="welcome">Welcome <a href="./profile_edit.php" target="_blank"><span><?= $_SESSION['username'] ?></span> ! <span><img src="images-upload/<?= $_SESSION['username'] . '_profile.jpg' ?>" width="45px" height="45px" id="profile"></span></a></h3>
     <form action="#" method="post">
         <div class="adm">
             <input type="submit" name="logoff" value="Log Off" />
