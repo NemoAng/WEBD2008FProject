@@ -116,18 +116,20 @@ $valid = true;
                     <colgroup>
                         <?php if ($user_logined) : ?>
                             <col span="1" style="width: 5%;">
-                            <col span="1" style="width: 20%;">
                             <col span="1" style="width: 25%;">
                             <col span="1" style="width: 15%;">
                             <col span="1" style="width: 15%;">
                             <col span="1" style="width: 15%;">
+                            <col span="1" style="width: 15%;">
+                            <col span="1" style="width: 5%;">
                             <col span="1" style="width: 5%;">
                         <?php else : ?>
                             <col span="1" style="width: 20%;">
-                            <col span="1" style="width: 35%;">
+                            <col span="1" style="width: 34%;">
                             <col span="1" style="width: 15%;">
                             <col span="1" style="width: 15%;">
                             <col span="1" style="width: 15%;">
+                            <col span="1" style="width: 6%;">
                         <?php endif ?>
                     </colgroup>
 
@@ -141,6 +143,7 @@ $valid = true;
                             <th>Post Code</th>
                             <th>Tel</th>
                             <th>Campus Zone</th>
+                            <th>Detail</th>
                             <?php if ($user_logined) : ?>
                                 <th>Edit</th>
                             <?php endif ?>
@@ -157,6 +160,7 @@ $valid = true;
                                 <td><?= $campus['ZipCode'] ?></td>
                                 <td><?= $campus['Tel'] ?></td>
                                 <td><?= $campus['CpszName'] ?></td>
+                                <td><a href="campus_view.php?id=<?= $campus['Id'] ?>" target="_blank">View</a></td>
                                 <?php if ($user_logined) : ?>
                                     <td><a href="campus_edit.php?id=<?= $campus['Id'] ?>">Edit</a></td>
                                 <?php endif ?>
