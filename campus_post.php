@@ -1,8 +1,10 @@
 <?php
 require('header_connect_session.php');
+require('lib\ImageResize.php');
+
+use \Gumlet\ImageResize;
 
 $year = date("Y");
-$valid = true;
 
 if ($_POST) {
     //$title = $_POST['title'];
@@ -14,28 +16,69 @@ if ($_POST) {
     $cps_tel = filter_input(INPUT_POST, 'cps_tel', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     if ($_POST['command_type'] == 'Create') {
-        if ($valid) {
-            if ($cps_name != null) {
-                print_r($cps_cps_zone . ',');
-                print_r($cps_name . ',');
-                print_r($cps_add . ',');
-                print_r($cps_pcode . ',');
-                print_r($cps_tel);
+        if ($cps_name != null) {
+            print_r($cps_cps_zone . ',');
+            print_r($cps_name . ',');
+            print_r($cps_add . ',');
+            print_r($cps_pcode . ',');
+            print_r($cps_tel);
 
-                $query = "INSERT INTO campus (CampusZoneId, Name, Address, ZipCode, Tel) values (:cps_zone, :cps_name, :cps_add, :cps_pcode, :cps_tel)";
-                //$query = "INSERT INTO Campus (Name, Address, ZipCode, Tel) values ('www', 'xxx', 'jjj', 'ttt')";
-                $statement = $db->prepare($query);
-                $statement->bindValue(':cps_zone', $cps_cps_zone);
-                $statement->bindValue(':cps_name', $cps_name);
-                $statement->bindValue(':cps_add', $cps_add);
-                $statement->bindValue(':cps_pcode', $cps_pcode);
-                $statement->bindValue(':cps_tel', $cps_tel);
+            $query = "INSERT INTO campus (CampusZoneId, Name, Address, ZipCode, Tel) values (:cps_zone, :cps_name, :cps_add, :cps_pcode, :cps_tel)";
+            //$query = "INSERT INTO Campus (Name, Address, ZipCode, Tel) values ('www', 'xxx', 'jjj', 'ttt')";
+            $statement = $db->prepare($query);
+            $statement->bindValue(':cps_zone', $cps_cps_zone);
+            $statement->bindValue(':cps_name', $cps_name);
+            $statement->bindValue(':cps_add', $cps_add);
+            $statement->bindValue(':cps_pcode', $cps_pcode);
+            $statement->bindValue(':cps_tel', $cps_tel);
+            $statement->execute();
 
-                $statement->execute();
+            if (isset($_FILES["fileToUpload"])) {
+
+                $target_dir = "images-upload/";
+                $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+
+                $fileInfo = pathinfo($target_file);
+                $fileName = $fileInfo['filename'];
+                $fileExtension = $fileInfo['extension'];
+                $target_file_medium = $target_dir . '/' . $fileName . "_medium." . $fileExtension;
+                $target_file_thumbnail = $target_dir . '/' . $fileName . "_thumbnail." . $fileExtension;
+
+                $uploadOk = 1;
+                //$fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+                $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+
+                $fileType = mime_content_type($_FILES["fileToUpload"]["tmp_name"]);
+
+                if (
+                    $fileType != "image/jpg" && $fileType != "image/jpeg" && $fileType != "image/png" && $fileType != "image/gif"
+                    && $fileType != "application/pdf"
+                ) {
+                    echo "Sorry, only JPG, PNG, GIF & PDF files are allowed.<br>";
+                    $uploadOk = 0;
+                }
+
+                // Check if $uploadOk is set to 0 by an error
+                if ($uploadOk == 1) {
+                    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                        echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.<br>";
+
+                        if ($fileType != "application/pdf") {
+                            $image = new ImageResize($target_file);
+                            $image->resizeToWidth(400, $allow_enlarge = True);
+                            $image->save($target_file_medium);
+                            $image->resizeToWidth(50, $allow_enlarge = True);
+                            $image->save($target_file_thumbnail);
+                        }
+                    } else {
+                        echo "Sorry, there was an error uploading your file.<br>";
+                    }
+                }
             }
-            header('Location: campus_list.php');
-            exit();
         }
+        header('Location: campus_list.php');
+        exit();
     } else if ($_POST['command_type'] == 'Update') {
         if ($valid) {
             $cps_id =
