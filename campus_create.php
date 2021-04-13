@@ -34,7 +34,7 @@ $year = date("Y");
         ?>
         <h1 class="rrc_header_h1"><?= $title ?></h1>
         <div>
-            <form action="campus_post.php" method="post" id="id_cc">
+            <form action="campus_post.php" enctype="multipart/form-data" method="post" id="id_cc">
                 <fieldset>
                     <legend>New Campus</legend>
                     <p>
@@ -63,6 +63,9 @@ $year = date("Y");
                     </p>
 
                     <p class="adm">
+
+                        <label for="image">Campus Photo:</label>
+                        <input type="file" name="fileToUpload" id="fileToUpload">
                         <button type="submit" name="command_type" value="Create">Create</button>
                     </p>
                 </fieldset>
