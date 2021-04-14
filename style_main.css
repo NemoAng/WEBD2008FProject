@@ -168,6 +168,24 @@ table thead {
   clear: both;
 }
 
+#profile {
+  border-radius: 50%;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+#campus_img {
+  margin-top: 100px;
+}
+
+#campus_img img {
+  width: 50%;
+  float: left;
+  margin-right: 30px;
+}
+
 .footer {
   text-align: center;
   margin-top: 200px;
