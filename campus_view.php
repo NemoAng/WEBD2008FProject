@@ -16,6 +16,10 @@ if ($_GET) {
     $statement->execute();
     $campus = $statement->fetch();
 
+    if ($campus['Images'] == "") {
+        $campus['Images'] = 'RRC.jpg';
+    }
+
     $cps_zone_id = $campus['CampusZoneId'];
     //var_dump($campuse);
 
